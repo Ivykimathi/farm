@@ -28,22 +28,25 @@ class Food extends CI_Controller {
     public function index() {
         $data['settings'] = $this->settings_model->getSettings();
         $data['foods'] = $this->food_model->getFood();
+        $data['products'] = $this->product_model->getProduct();
+
+        $this->food_model->update_instock();
         $this->load->view('home/dashboard', $data); // just the header file
         $this->load->view('food', $data);
         $this->load->view('home/footer'); // just the header file
-        $data['products'] = $this->product_model->get_all_products();
-        $this->load->view('product', $data);
+        
     }
 
     public function addNewView() {
         $data = array();
         $data['settings'] = $this->settings_model->getSettings();
-        // $data['feed'] = $this->food_model->getSettings();
-        // $data['food'] = $this->food_model->getFoodById($id);
-        // $data['products'] = $this->product_model->get_all_products();
+        $data['products'] = $this->product_model->getProduct();
         $this->load->view('home/dashboard', $data); // just the header file
         $this->load->view('add_new', $data);
         $this->load->view('home/footer'); // just the header file
+        // echo '<pre>';
+        // print_r($data['product']);
+        // echo '</pre>';
     }
 
     public function addNew() {
@@ -55,7 +58,9 @@ class Food extends CI_Controller {
         //  $ave_consumption = $consumption / $quantity;
         $ave_consumption = $this->input->post('ave_consumption');
         $note = $this->input->post('note');
-        $feed = $this->input->post('feed');
+        $product = $this->input->post('product');
+
+        // $this->feeding_model->record_feeding($food_id, $consumption);
 
 
         if (empty($food_id)) {
@@ -72,7 +77,7 @@ class Food extends CI_Controller {
         $this->form_validation->set_rules('date', 'Date', 'trim|required|min_length[1]|max_length[100]|xss_clean');
         // Validating Name Field
         $this->form_validation->set_rules('consumption', 'Food Consumption', 'trim|required|min_length[1]|max_length[100]|xss_clean');
-
+        $this->form_validation->set_rules('product', 'name', 'trim|required|xss_clean');
 
 
         if ($this->form_validation->run() == FALSE) {
@@ -90,8 +95,8 @@ class Food extends CI_Controller {
                 'quantity' => $quantity,
                 'ave_consumption' => $ave_consumption,
                 'note' => $note,
-                'name' => $feed,
-                'add_date' => $add_date
+                'add_date' => $add_date,
+                'name' => $product
             );
 
             if (empty($id)) {
@@ -114,6 +119,7 @@ class Food extends CI_Controller {
         $id = $this->input->get('id');
         $data['settings'] = $this->settings_model->getSettings();
         $data['food'] = $this->food_model->getFoodById($id);
+        $data['products'] = $this->product_model->getProduct();
         $this->load->view('home/dashboard', $data); // just the header file
         $this->load->view('add_new', $data);
         $this->load->view('home/footer'); // just the footer file

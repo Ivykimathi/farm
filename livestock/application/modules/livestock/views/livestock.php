@@ -176,6 +176,10 @@
                                         </select>
 
                                         </div>
+                                        <div class="form-group">
+                        <label for="exampleInputEmail1">Tag</label>
+                        <input type="text" class="form-control" name="tag" id="exampleInputEmail1" value='' placeholder="">
+                    </div>
                                            <div class="form-group">
                                             <label for="exampleInputEmail1"><?php  echo lang('supplier'); ?></label>
                                             <select name="supplier" class="form-control js-example-basic-single" id="exampleInputEmail1" placeholder="" style="width: 100%;" required>

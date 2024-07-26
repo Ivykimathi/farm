@@ -27,15 +27,16 @@
                                         <div class="col-lg-3"></div>
                                     </div>
                                     <form role="form" action="food/addNew" id="editFoodForm" method="post" enctype="multipart/form-data">
+                                       
                                     <div class="form-group">
-                    <label for="exampleInputEmail1">Food</label>
-                    <select name="feed" class="form-control js-example-basic-single" id="exampleInputEmail1" placeholder="" style="width: 100%;" required>
-                    <option value="">Select Food</option>   
-                    <?php foreach ($feeds as $feed) { ?>
-                            <option  value="<?php echo $feed->name; ?>"> <?php echo $feed->name; ?></option>
-                        <?php } ?>
-                    </select>
-                </div>   
+                                            <label for="exampleInputEmail1">Product</label>
+                                            <select class="form-control" name="product" id="product">
+                                            <option value="">Select Product</option>
+                                            <?php foreach ($products as $product): ?>
+                                                <option value="<?= $product->id ?>"><?= $product->name ?></option>
+                                               <?php endforeach; ?>
+                                        </select>
+                                        </div>
                                     <div class="form-group">
                                             <label for="exampleInputEmail1"><?php  echo lang('date'); ?></label>
                                             <input type="text" class="form-control form-control-inline input-medium default-date-picker" name="date" id="exampleInputEmail1" value='<?php

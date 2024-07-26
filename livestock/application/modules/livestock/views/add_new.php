@@ -60,24 +60,22 @@
                                             }
                                             ?>' placeholder="">
                                         </div>
-
                                         <div class="form-group">
                                             <!-- <label for="exampleInputEmail1"> </label> -->
                                             <label for="exampleInputEmail1">Lineage</label>
-                                            <!-- <input type="text" class="form-control" name="lineage" id="exampleInputEmail1" value='<?php
-                                           // if (!empty($livestock->lineage)) {
-                                           //     echo $livestock->lineage;
-                                            //}
-                                            ?>' placeholder=""> -->
                                             <select class="form-control" name="lineage" id="lineage">
                                             <option value="">Select Lineage</option>
-                                            <?php foreach ($livestock as $livestock): ?>
+                                            <?php foreach ($livestocks as $livestock): ?>
                                                 <option value="<?= $livestock->id ?>"><?= $livestock->livestock_name ?></option>
                                                <?php endforeach; ?>
                                         </select>
 
                                         </div>
                                         <div class="form-group">
+                                            <label for="exampleInputEmail1">Tag</label>
+                                            <input type="text" class="form-control" name="tag" id="exampleInputEmail1" value='' placeholder="">
+                                        </div>
+                                           <div class="form-group">
                                             <label for="exampleInputEmail1"><?php  echo lang('supplier'); ?></label>
                                             <select name="supplier" class="form-control js-example-basic-single" id="exampleInputEmail1" placeholder="" style="width: 100%;" required>
                                             <option value="">Select Supplier</option>   
@@ -86,7 +84,6 @@
                                                 <?php } ?>
                                             </select>
                                         </div>
-
 
                                         <input type="hidden" name="id" value='<?php
                                         if (!empty($livestock->id)) {

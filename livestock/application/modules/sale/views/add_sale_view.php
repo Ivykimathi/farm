@@ -59,6 +59,7 @@
                                                         ?> > <?php echo $client->name; ?> </option>
                                                             <?php } ?> 
                                                 </select>
+                                                
                                             </div>
 
                                             <div class="form-group">

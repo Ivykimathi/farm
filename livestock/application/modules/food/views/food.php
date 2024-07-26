@@ -25,9 +25,11 @@
                             <tr>
                                 <th><?php  echo lang('food_id'); ?></th>
                                 <th><?php  echo lang('date'); ?></th> 
+                                <th><?php  echo lang('product'); ?></th>
                                 <th><?php  echo lang('food_consumption'); ?></th>                        
                                 <th><?php  echo lang('livestock_quantity'); ?></th>
                                 <th><?php  echo lang('average_food_consumption'); ?></th>
+                                <th><?php  echo 'In Stock'?></th>
                                 <th><?php  echo lang('note'); ?></th>
                                 <th><?php  echo lang('options'); ?></th>
                             </tr>
@@ -47,10 +49,12 @@
                             <tr class="">
                                 <td> <?php echo $food->food_id; ?></td>
                                 <td> <?php echo $food->date; ?></td>
+                                <td><?php echo $food->name; ?></td>
                                 <td> <?php echo $food->consumption; ?></td>
                                 <td><?php echo $food->quantity; ?></td>
                                 <td><?php echo $food->ave_consumption; ?></td>
-                                <td><?php echo $food->note; ?></td>
+                                <td><?php echo $food->InStock; ?></td> 
+                                <td><?php echo $food->note; ?></td>  
                                 <td>
                                     <a class="" href="food/editFood?id=<?php echo $food->id; ?>" ><button type="button" class="btn btn-xs"><i class="fa fa-edit"></i> <?php  echo lang('edit'); ?></button></i></a>
                                 <a class="" href="food/delete?id=<?php echo $food->id; ?>" onclick="return confirm('Are you sure you want to delete this item?');"><button type="button" class="btn btn-xs"><i class="fa fa-times"></i> <?php  echo lang('delete'); ?></button></i></a>
@@ -75,16 +79,18 @@
                 <h4 class="modal-title"><strong><i class="fa fa-plus-circle"></i> <?php  echo lang('add_food_history'); ?></strong></h4>
             </div>
             <div class="modal-body">
-                <form role="form" action="food/addNew" method="post" id="editFoodForm" enctype="multipart/form-data">
+           
+    <form role="form" action="food/addNew" method="post" id="editFoodForm" enctype="multipart/form-data">
+                
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Food</label>
-                    <select name="feed" class="form-control js-example-basic-single" id="exampleInputEmail1" placeholder="" style="width: 100%;" required>
-                    <option value="">Select Food</option>   
-                    <?php foreach ($feeds as $feed) { ?>
-                            <option  value="<?php echo $feed->name; ?>"> <?php echo $feed->name; ?></option>
-                        <?php } ?>
-                    </select>
-                </div>    
+            <label for="product">select product</label>
+            <select name="product" id="product" class="form-control">
+                <?php foreach ($products as $product): ?>
+                    <option value="<?php echo $product->name; ?>"><?php echo $product->name; ?></option>
+                <?php endforeach; ?>
+            </select>
+            
+        </div>
                 <div class="form-group">
                         <label for="exampleInputEmail1"><?php  echo lang('date'); ?></label>
                         <input type="text" class="form-control form-control-inline input-medium default-date-picker" name="date" id="exampleInputEmail1" value='' placeholder="">
